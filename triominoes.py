@@ -1,6 +1,8 @@
 """
 Prove that for any 2^n by 2^n grid with any one square removed, a number of L-shaped triominoes can be made to cover it
-Proven visually by taking input from the user for board size and using matplotlib to visualize the constructed board
+Proven visually by taking input from the user for board size and using matplotlib to visualize the constructed board,
+and it will also print out the board into the terminal so the user can copy it if they want to use it 
+in a different way
 """
 
 
@@ -14,6 +16,19 @@ def create_board(size, missing_square):
     # Mark the missing square with -1
     board[missing_square[0], missing_square[1]] = -1
     return board
+
+def print_board_terminal(board):
+    size = len(board)
+    for i in range(size):
+        for j in range(size):
+            if board[i, j] == -1:
+                print(" X ", end="")
+            elif board[i, j] == 0:
+                print(" . ", end="")
+            else:
+                # Print the tile_id modulo 100 with a fixed width of 3 to align the columns
+                print(f"{board[i, j] % 100:3}", end="")
+        print()
 
 # Function to print the board using matplotlib for a more visually appealing output
 def print_board(board):
@@ -29,6 +44,7 @@ def print_board(board):
                 ax.text(j, i, str(board[i, j] % 100), ha='center', va='center', color='black')
 
     plt.show()  # Display the plot
+    print_board_terminal(board)
 
 # Global variable to keep track of the current tile number
 tile_id = 1
