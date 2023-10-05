@@ -2,7 +2,8 @@
 Prove that for any 2^n by 2^n grid with any one square removed, a number of L-shaped triominoes can be made to cover it
 Proven visually by taking input from the user for board size and using matplotlib to visualize the constructed board,
 and it will also print out the board into the terminal so the user can copy it if they want to use it 
-in a different way
+in a different way.
+It will also print out the number of triominoes required to cover the board
 """
 
 
@@ -29,6 +30,7 @@ def print_board_terminal(board):
                 # Print the tile_id modulo 100 with a fixed width of 3 to align the columns
                 print(f"{board[i, j] % 100:3}", end="")
         print()
+    print(f"{board[size-1][size-1]} is the number of triominoes required to cover the board")
 
 # Function to print the board using matplotlib for a more visually appealing output
 def print_board(board):
