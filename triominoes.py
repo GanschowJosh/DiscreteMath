@@ -1,3 +1,9 @@
+"""
+Prove that for any 2^n by 2^n grid with any one square removed, a number of L-shaped triominoes can be made to cover it
+Proven visually by taking input from the user for board size and using matplotlib to visualize the constructed board
+"""
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 
