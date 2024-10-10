@@ -57,10 +57,37 @@ class Tree:
                 
 
     
+def generateTreeFromPrufer(code):
+    code = [i-1 for i in code]
+    #print(code)
+    def nextAvailableNode(code, nodes):
+        for i in nodes:
+            if i not in code:
+                return i
+            
+    size = len(code) + 2
+    nodes = [i for i in range(size)]
+    connections = 0
+    tree = Tree(size)
+    while connections < tree.numEdges:
+        if code:
+            n = nextAvailableNode(code, nodes)
+            tree.addEdge(n+1, code[0]+1)
+            if len(code) > 1:
+                code = code[1:]
+            else:
+                code = []
+            nodes = nodes[0:nodes.index(n)] + nodes[nodes.index(n)+1:]
+        else:
+            tree.addEdge(nodes[0]+1, nodes[1]+1)
+        connections += 1
+    return tree
+        
+    
+
             
 #testing 
 t = Tree(12)
-t.printMatrix()
 #adding edges
 t.addEdge(1, 5)
 t.addEdge(1, 8)
@@ -96,7 +123,8 @@ t.addEdge(12, 5)
 t.addEdge(12, 6)
 t.addEdge(12, 11)
 
-t.printMatrix()
 code = t.generatePrufer()
-print(code)
-t.printMatrix()
+
+newt = generateTreeFromPrufer(code)
+
+print(newt.generatePrufer() == t.generatePrufer()) #true, works in reverse
