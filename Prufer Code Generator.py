@@ -1,3 +1,4 @@
+from copy import deepcopy
 class Tree:
     def __init__(self, size):
         if size < 2:
@@ -39,12 +40,12 @@ class Tree:
     #clearing all connections from a node, removing it from list
     def clearConnections(self, node):
         for i in range(self.numNodes):
-            self.matrix[node][i] = 0
-            self.matrix[i][node] = 0
+            self.workingMatrix[node][i] = 0
+            self.workingMatrix[i][node] = 0
             
     #generating prufer code
     def generatePrufer(self):
-        self.workingMatrix = self.matrix.copy()
+        self.workingMatrix = deepcopy(self.matrix)
         code = []
         while len(code) < self.numNodes - 2:
             nextLeaf = self.findLeaf()
@@ -98,3 +99,4 @@ t.addEdge(12, 11)
 t.printMatrix()
 code = t.generatePrufer()
 print(code)
+t.printMatrix()
